@@ -1,0 +1,15 @@
+
+// get
+app.get('/users') - sob users newa or filter kore akjon user k newa (email diye filter or )
+app.get('/users/:id') - ak jon user k pete chaile
+
+// post
+app.post('/users') - user create kora
+
+// delete
+app.delete('/users/:id) - users er modde specific user k delete kora
+
+// update
+app.put('/users/:id') - update kora 
+
+
