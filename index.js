@@ -14,17 +14,32 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 // console.log(uri)
 
 async function run() {
-    try {
-      await client.connect();
-      const database = client.db("doctors_portal");
-      const appoinmentsCollection = database.collection("appoinment");
-    console.log('db connected')
-      
-    } finally {
+  try {
+    await client.connect();
+    const database = client.db("doctors_portal");
+    const appoinmentsCollection = database.collection("appoinments");
+    // console.log('db connected')
+
+    app.get('/appoinments', async(req, res) => {
+      const email = req.query;
+      const query = {email: query.email}
+      const cursor = appoinmentsCollection.find(query);
+      const appoinments = await cursor.toArray();
+      res.json(appoinments)
+    })
+
+    app.post('/appoinments', async (req, res) => {
+      const appoinment = req.body;
+      const result = await appoinmentsCollection.insertOne(appoinment)
+      console.log(appoinment)
+      res.json(result)
+    })
+
+  } finally {
     //   await client.close();
-    }
   }
-  run().catch(console.dir);
+}
+run().catch(console.dir);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')

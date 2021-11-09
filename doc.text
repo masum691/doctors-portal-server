@@ -12,4 +12,19 @@ app.delete('/users/:id) - users er modde specific user k delete kora
 // update
 app.put('/users/:id') - update kora 
 
+--------------------------------------------------------
+
+* post er jonno minimum 3 ta information dite hobe
+1. method 
+2. headers
+3 body 
+
+fetch('http://localhost:5000/appoinments', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(appoinment)
+        })
+
 
